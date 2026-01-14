@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dilon & Jeslita | Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#1e3a8a;
+  --gold:#d4af37;
+  --glass:rgba(255,255,255,.72);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#eef4ff;
+  overflow-x:hidden;
+}
+
+/* ================= BACKGROUND LAYERS ================= */
+.layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
+
+.layer.bg{
+  background:
+    linear-gradient(rgba(30,58,138,.6),rgba(30,58,138,.6)),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+  background-size:cover;
+  background-position:center;
+  z-index:-10;
+}
+
+.layer.clouds{
+  background:linear-gradient(120deg,
+    rgba(255,255,255,.22),
+    transparent,
+    rgba(255,255,255,.18));
+  animation:clouds 100s linear infinite;
+  z-index:-9;
+}
+@keyframes clouds{
+  from{background-position:0 0}
+  to{background-position:3000px 0}
+}
+
+.layer.rays{
+  background:repeating-linear-gradient(
+    120deg,
+    rgba(255,255,255,.15),
+    rgba(255,255,255,0) 22%);
+  opacity:.5;
+  z-index:-8;
+}
+
+.layer.glow{
+  background:radial-gradient(circle at center,
+    rgba(255,255,255,.22),transparent 65%);
+  z-index:-7;
+}
+
+/* ================= GLITTERS (REFINED) ================= */
+.glitter{
+  position:fixed;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff,var(--gold));
+  opacity:0;
+  animation:glitter 22s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes glitter{
+  0%{transform:translateY(130vh) scale(.2);opacity:0}
+  15%{opacity:.6}
+  100%{transform:translateY(-20vh) scale(1);opacity:0}
+}
+
+/* ================= FLORALS (REFINED) ================= */
+.flower{
+  position:fixed;
+  font-size:2.2rem;
+  opacity:0;
+  animation:flowerFloat linear infinite;
+  pointer-events:none;
+}
+.flower.small{font-size:1.5rem}
+.flower.large{font-size:2.7rem}
+
+@keyframes flowerFloat{
+  0%{transform:translateY(140vh) rotate(0deg);opacity:0}
+  20%{opacity:.22}
+  100%{transform:translateY(-30vh) rotate(360deg);opacity:0}
+}
+
+/* ================= SECTIONS ================= */
+.section{
+  min-height:100vh;
+  padding:120px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+}
+
+.card{
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  padding:46px 38px;
+  border-radius:40px;
+  box-shadow:0 40px 80px rgba(0,0,0,.25);
+  max-width:420px;
+}
+
+/* ================= REVEAL ================= */
+.reveal{
+  opacity:0;
+  transform:translateY(90px) scale(.94);
+  filter:blur(8px);
+  transition:
+    opacity 1.6s ease,
+    transform 1.8s cubic-bezier(.19,1,.22,1),
+    filter 1.4s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+
+/* ================= TYPOGRAPHY ================= */
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:3.3rem;
+  color:#fff;
+}
+.hero p{
+  color:#f8fafc;
+  letter-spacing:3px;
+  font-size:.85rem;
+}
+
+.names{
+  font-family:'Playfair Display',serif;
+  font-size:2.7rem;
+  color:var(--blue);
+}
+
+.ornament{
+  width:140px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:28px auto;
+  position:relative;
+}
+.ornament::before,
+.ornament::after{
+  content:"✦";
+  position:absolute;
+  top:-14px;
+  color:var(--gold);
+}
+.ornament::before{left:-10px}
+.ornament::after{right:-10px}
+
+/* ================= COUNTDOWN ================= */
+.countdown{
+  display:flex;
+  gap:10px;
+  margin-top:30px;
+}
+.time{
+  flex:1;
+  background:#fff;
+  padding:16px;
+  border-radius:22px;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+.time h3{color:var(--blue);font-size:1.4rem}
+
+/* ================= SACRED ================= */
+.sacred{
+  font-family:'Playfair Display',serif;
+  font-size:1.25rem;
+  line-height:2;
+  color:#334155;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="layer bg"></div>
+<div class="layer clouds"></div>
+<div class="layer rays"></div>
+<div class="layer glow"></div>
+
+<!-- GLITTERS (STAGGERED START) -->
+<script>
+for(let i=0;i<70;i++){
+  const g = document.createElement('div')
+  g.className = 'glitter'
+  g.style.left = Math.random()*100 + 'vw'
+  g.style.animationDelay = (-Math.random()*22) + 's'
+  document.body.appendChild(g)
+}
+</script>
+
+
+<!-- FLORALS (STAGGERED START) -->
+<script>
+const flowers = ["🌸","❀","✿","🌼","🌺"]
+for(let i=0;i<22;i++){
+  const f = document.createElement('div')
+  f.className = 'flower ' + (Math.random()>.65?'large':Math.random()>.4?'small':'')
+  f.innerText = flowers[Math.floor(Math.random()*flowers.length)]
+  f.style.left = Math.random()*100 + 'vw'
+  f.style.animationDuration = 42 + Math.random()*36 + 's'
+  f.style.animationDelay = (-Math.random()*30) + 's'
+  document.body.appendChild(f)
+}
+</script>
+
+<!-- HERO (CLEAN & SACRED) -->
+<section class="section hero">
+  <div class="reveal">
+    <p>WITH HEARTS FULL OF GRATITUDE</p>
+    <h1>Dilon & Jeslita</h1>
+    <div class="ornament"></div>
+    <p>INVITE YOU TO SHARE IN THEIR JOY</p>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section">
+  <div class="reveal card">
+    <p style="font-style:italic">
+      What began as a gentle journey of faith<br>
+      blossomed into a promise of forever.<br><br>
+      Guided by God and surrounded by love,<br>
+      we step into a new chapter of life together.
+    </p>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section">
+  <div class="reveal card">
+    <div class="names">May 9, 2027</div>
+    <div class="ornament"></div>
+    <div class="countdown">
+      <div class="time"><h3 id="d">0</h3>DAYS</div>
+      <div class="time"><h3 id="h">0</h3>HRS</div>
+      <div class="time"><h3 id="m">0</h3>MIN</div>
+      <div class="time"><h3 id="s">0</h3>SEC</div>
+    </div>
+  </div>
+</section>
+
+<!-- CEREMONY -->
+<section class="section">
+  <div class="reveal card">
+    <h2>Wedding Ceremony</h2>
+    <div class="ornament"></div>
+    <p>
+      In the sacred presence of God,<br>
+      we will exchange our vows at<br><br>
+      <strong>Sacred Heart Church</strong><br>
+      Surathkal<br><br>
+      Seeking His blessings as we begin<br>
+      our life as one.
+    </p>
+  </div>
+</section>
+
+<!-- RECEPTION -->
+<section class="section">
+  <div class="reveal card">
+    <h2>Reception</h2>
+    <div class="ornament"></div>
+    <p>
+      Following the wedding ceremony,<br>
+      we warmly invite you to join us<br>
+      for an evening of love and celebration at<br><br>
+      <strong>Church Sabhabhavan</strong><br><br>
+      Your presence will make<br>
+      our joy complete.
+    </p>
+  </div>
+</section>
+
+<!-- SACRED BLESSING -->
+<section class="section">
+  <div class="reveal card sacred">
+    <div style="font-size:3.6rem;color:#d4af37">✝️</div>
+    “What God has joined together,<br>
+    let no one separate.”<br><br>
+    We humbly seek your prayers<br>
+    and blessings on this sacred union.
+    <div style="font-size:2.6rem;margin-top:12px">🕊️</div>
+  </div>
+</section>
+
+<script>
+/* Smooth reveal */
+const items=document.querySelectorAll('.reveal')
+function animate(){
+  items.forEach(el=>{
+    if(el.getBoundingClientRect().top < innerHeight-120){
+      el.classList.add('show')
+    }
+  })
+  requestAnimationFrame(animate)
+}
+animate()
+
+/* Countdown */
+const target=new Date("2027-05-09T00:00:00").getTime()
+setInterval(()=>{
+  const diff=target-Date.now()
+  if(diff<0)return
+  d.textContent=Math.floor(diff/86400000)
+  h.textContent=Math.floor(diff/3600000)%24
+  m.textContent=Math.floor(diff/60000)%60
+  s.textContent=Math.floor(diff/1000)%60
+},1000)
+</script>
+
+</body>
+</html>
